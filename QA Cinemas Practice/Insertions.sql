@@ -4,12 +4,12 @@ DELETE FROM employees;
 DELETE FROM emergency_contacts;
 
 INSERT INTO employees(Employee_ID, F_Name, L_Name, DOB, Gender, Home_Address)
-	VALUES (1,'Matt','Hunt',19220101,'M','10 Downing Street, London');
+	VALUES (1,'Matt','H',19220101,'M','10 Downing Street, London');
 INSERT INTO employees(Employee_ID, F_Name, L_Name, DOB, Gender, Home_Address)
-	VALUES (2,'Gareth','Davis',19230101,'M','Buckingham Palace, London');
+	VALUES (2,'Gareth','D',19230101,'M','Buckingham Palace, London');
 
 INSERT INTO emergency_contacts (Employee_ID, F_Name, L_Name, Relationship, Contact_Num, Contact_Email)
-	VALUES (1,'Papa','Hunt','Papa','43435353545','papa@papa.com');
+	VALUES (1,'Papa','H','Papa','43435353545','papa@papa.com');
 INSERT INTO emergency_contacts (Employee_ID, F_Name, L_Name, Relationship, Contact_Num, Contact_Email)
 	VALUES (2,'Missy','Christmas','Cat','43435353555','xmas@meow.com');
     

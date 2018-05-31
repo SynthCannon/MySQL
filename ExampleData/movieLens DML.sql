@@ -1,19 +1,119 @@
 show tables;
-SELECT * FROM genres_movies ORDER BY genre_id LIMIT 10;
 
-SELECT genre_id, count(genre_id) as cnt from genres_movies group by genre_id;
 
-SELECT genre_id, count(genre_id) as cnt from genres_movies group by genre_id order by cnt desc limit 1; 
+SELECT 
+    *
+FROM
+    genres_movies
+ORDER BY genre_id
+LIMIT 10;
 
-SELECT g.name, genre_id, count(m.genre_id) as cnt from genres_movies as m join genres as g on (m.genre_id = g.id) group by genre_id order by cnt;
 
-SELECT r.id, r.user_id, r.rated_at, g.id, g.name, u.id, u.gender, u.zip_code, o.name FROM ratings AS r JOIN genres_movies as gm ON r.movie_id=gm.id JOIN genres as g ON r.movie_id=g.id JOIN users u ON r.user_id=u.id JOIN occupations o ON r.user_id=o.id WHERE gm.id=11 LIMIT 10;
 
-select o.name, count(u.occupation_id) as cnt from ratings r join genres_movies g on r.movie_id=g.movie_id join users u on r.user_id=u.id join occupations o on u.occupation_id=o.id where g.id=11 group by u.occupation_id order by cnt desc;
 
-select o.name, count(r.rating) as cnt from ratings r join users u on r.user_id = u.id join occupations o on u.occupation_id=o.id group by u.occupation_id order by cnt desc;
+SELECT 
+    genre_id, COUNT(genre_id) AS cnt
+FROM
+    genres_movies
+GROUP BY genre_id;
 
-select o.name, avg(r.rating) as average, count(r.rating) as cnt from ratings r join genres_movies g on r.movie_id = g.movie_id join users u on r.user_id=u.id join occupations o on  u.occupation_id=o.id where g.genre_id=11 group by u.occupation_id order by avg(r.rating) desc;
+
+
+
+SELECT 
+    genre_id, COUNT(genre_id) AS cnt
+FROM
+    genres_movies
+GROUP BY genre_id
+ORDER BY cnt DESC
+LIMIT 1;
+
+ 
+
+SELECT 
+    g.name, genre_id, COUNT(m.genre_id) AS cnt
+FROM
+    genres_movies AS m
+        JOIN
+    genres AS g ON (m.genre_id = g.id)
+GROUP BY genre_id
+ORDER BY cnt;
+
+
+
+SELECT 
+    r.id,
+    r.user_id,
+    r.rated_at,
+    g.id,
+    g.name,
+    u.id,
+    u.gender,
+    u.zip_code,
+    o.name
+FROM
+    ratings AS r
+        JOIN
+    genres_movies AS gm ON r.movie_id = gm.id
+        JOIN
+    genres AS g ON r.movie_id = g.id
+        JOIN
+    users u ON r.user_id = u.id
+        JOIN
+    occupations o ON r.user_id = o.id
+WHERE
+    gm.id = 11
+LIMIT 10;
+
+
+
+SELECT 
+    o.name, COUNT(u.occupation_id) AS cnt
+FROM
+    ratings r
+        JOIN
+    genres_movies g ON r.movie_id = g.movie_id
+        JOIN
+    users u ON r.user_id = u.id
+        JOIN
+    occupations o ON u.occupation_id = o.id
+WHERE
+    g.id = 11
+GROUP BY u.occupation_id
+ORDER BY cnt DESC;
+
+
+
+SELECT 
+    o.name, COUNT(r.rating) AS cnt
+FROM
+    ratings r
+        JOIN
+    users u ON r.user_id = u.id
+        JOIN
+    occupations o ON u.occupation_id = o.id
+GROUP BY u.occupation_id
+ORDER BY cnt DESC;
+
+
+SELECT 
+    o.name, AVG(r.rating) AS average, COUNT(r.rating) AS cnt
+FROM
+    ratings r
+        JOIN
+    genres_movies g ON r.movie_id = g.movie_id
+        JOIN
+    users u ON r.user_id = u.id
+        JOIN
+    occupations o ON u.occupation_id = o.id
+WHERE
+    g.genre_id = 11
+GROUP BY u.occupation_id
+ORDER BY AVG(r.rating) DESC;
+
+
+
+
 
 SELECT 
     sub.o_name, sub.g_name, sub.average, sub.cnt

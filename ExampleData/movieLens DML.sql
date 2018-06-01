@@ -160,8 +160,10 @@ WHERE
 GROUP BY u.occupation_id , g.name
 ORDER BY AVG(r.rating) DESC) AS sub2;
 
+
+
 SELECT 
-    sub3.o_name, sub3.g_name, MAX(sub3.average) AS avrg, sub3.cnt
+    sub3.o_name, sub3.g_name, AVG(sub3.average) AS avrg, COUNT(sub3.cnt) as count
 FROM
     (SELECT 
         o.name AS o_name,
@@ -179,27 +181,6 @@ FROM
 GROUP BY sub3.o_name;
 
 
-SELECT 
-    sub4.m_title,
-    sub4.m_release_date,
-    MAX(sub4.cnt) AS max,
-    sub4.cnt
-FROM
-    (SELECT 
-        m.title AS m_title,
-            m.release_date AS m_release_date,
-            COUNT(r.rating) AS cnt
-    FROM
-        ratings r
-    JOIN movies m ON r.movie_id = m.id
-    JOIN users u ON r.user_id = u.id
-    GROUP BY m.id
-    ORDER BY m.title ASC) AS sub4;
-#GROUP BY sub4.m_title;
-
-
-
-DESCRIBE movies;
 
 
 
